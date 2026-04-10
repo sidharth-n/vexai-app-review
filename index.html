@@ -158,13 +158,16 @@ function render(){
       <div class="card-name">${e(a.name)}</div>
       <div class="card-pub"><span>${e(a.publisher)}</span> &middot; ${a.rating?a.rating.toFixed(1)+'&#9733;':'N/A'} &middot; ${e(a.genres)}</div>
       <div class="stats">
-        <div class="stat"><div class="stat-label">Revenue</div><div class="stat-val blue">${fmt(a.rev_2024)}</div></div>
+        <div class="stat"><div class="stat-label">TTM Revenue</div><div class="stat-val blue">${fmt(a.rev_2024)}</div></div>
         <div class="stat"><div class="stat-label">YoY Growth</div><div class="stat-val green">${fg(a.yoy_growth)}</div></div>
         <div class="stat"><div class="stat-label">Rating</div><div class="stat-val">${a.rating?a.rating.toFixed(1):'—'}</div></div>
         <div class="stat"><div class="stat-label">Size</div><div class="stat-val">${fs(a.size)}</div></div>
       </div>
       <div class="card-foot">
-        <button class="detail-btn" onclick="openModal('${a.id}')">View Details</button>
+        <div style="display:flex;gap:6px">
+          <button class="detail-btn" onclick="openModal('${a.id}')">View Details</button>
+          ${a.apptweak_link?`<a class="detail-btn" href="${a.apptweak_link}" target="_blank" style="text-decoration:none">AppTweak &#8599;</a>`:''}
+        </div>
         <div class="vote-pills">
           <button class="vp good ${v==='good'?'sel':''}" onclick="vo('${a.id}','good')" title="Build this"><span class="ico">&#x2714;</span></button>
           <button class="vp maybe ${v==='maybe'?'sel':''}" onclick="vo('${a.id}','maybe')" title="Maybe"><span class="ico">&#x2753;</span></button>
@@ -209,7 +212,7 @@ function openModal(id){
     </div>
     <div class="modal-body">
       <div class="stats">
-        <div class="stat"><div class="stat-label">Revenue 2024</div><div class="stat-val blue">${fmt(a.rev_2024)}</div></div>
+        <div class="stat"><div class="stat-label">2024 Revenue</div><div class="stat-val blue">${fmt(a.rev_2024)}</div></div>
         <div class="stat"><div class="stat-label">YoY Growth</div><div class="stat-val green">${fg(a.yoy_growth)}</div></div>
         <div class="stat"><div class="stat-label">Rating</div><div class="stat-val">${a.rating?a.rating.toFixed(1):'—'}</div></div>
         <div class="stat"><div class="stat-label">App Size</div><div class="stat-val">${fs(a.size)}</div></div>
